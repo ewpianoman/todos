@@ -120,4 +120,29 @@ $(function() {
     });
   });
   initTodoObserver();
+
+  // Filter functionality
+  $('.filter').on('click', '.show-all', function() {
+    $('.hide').removeClass('hide');
+  });
+  $('.filter').on('click', '.show-not-done', function() {
+    $('.hide').removeClass('hide');
+    $('.checked').closest('li').addClass('hide');
+  });
+  $('.filter').on('click', '.show-done', function() {
+    $('li').addClass('hide');
+    $('.checked').closest('li').removeClass('hide');
+  });
+  $(".clear").on("click", function() {
+   var $doneLi = $(".checked").closest("li");
+   for (var i = 0; i < $doneLi.length; i++) {
+     var $li = $($doneLi[i]); //you get a li out, and still need to convert into $li
+     var id = $li.attr('id');
+     (function($li){
+       deleteTodo(id, function(){
+                       deleteTodoLi($li);
+       });
+     })($li);
+   }
+ });
 });
