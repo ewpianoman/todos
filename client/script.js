@@ -48,6 +48,24 @@ var deleteTodoLi = function($li) {
   $li.remove();
 };
 
+var initTodoObserver = function() {
+  var target = $('ul')[0];
+  var config = { attributes: true, childList: true, characterData: true };
+  var observer = new MutationObserver(function(mutationRecords) {
+    $.each(mutationRecords, function(index, mutationRecord) {
+      updateTodoCount();
+    });
+  });
+  if(target) {
+    observer.observe(target, config);
+  }
+  updateTodoCount();
+};
+
+var updateTodoCount = function() {
+  $(".count").text($("li").length);
+};
+
 $(function() {
   $(":button").on('click', addTodo);
   $(":text").on('keypress', function(e) {
@@ -101,4 +119,5 @@ $(function() {
       deleteTodoLi($li);
     });
   });
+  initTodoObserver();
 });
