@@ -29,6 +29,9 @@ app.use(
 );
 
 // Browserify middleware setup
+browserify.settings({
+  transform: ['hbsfy']
+ });
 app.get('/javascripts/bundle.js', browserify('./client/script.js'));
 
 // Connect to Mongo DB with mongoose
