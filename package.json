@@ -18,7 +18,7 @@
     "handlebars": "^4.5.3",
     "hbsfy": "^2.8.1",
     "http-errors": "~1.6.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.7.13",
     "morgan": "~1.9.1",
     "node-sass-middleware": "^0.11.0"
